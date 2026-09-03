@@ -16,7 +16,7 @@ private:
     vector<Robot> robots;
 
 public:
-    explicit Equipo(const std::string& nombreEquipo);
+    explicit Equipo(const string& nombreEquipo);
 
     void agregarIntegrante(const Integrante& i);
     void agregarRobot(const Robot& r);
