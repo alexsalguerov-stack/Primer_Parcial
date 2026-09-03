@@ -1,22 +1,13 @@
 #pragma once
+#include <vector>
 #include <string>
+#include "Robot.h"
 
-// Clase Robot: representa un robot participante en la competencia.
-// Atributos privados + acceso controlado (encapsulamiento).
-class Robot {
-private:
-    std::string nombre;
-    std::string tipo; // Ej: "Sumo", "Seguidor de linea", "Combate"
+// Tema 5: filtra un vector<Robot> por tipo (agrupar por disciplina)
+std::vector<Robot> filtrarPorTipo(const std::vector<Robot>& robots, const std::string& tipo);
 
-public:
-    // Constructor con lista de inicializacion
-    Robot(const std::string& nombre, const std::string& tipo);
-
-    // Getters
-    std::string getNombre() const;
-    std::string getTipo() const;
-
-    // Setters (con validacion basica)
-    void setNombre(const std::string& nuevoNombre);
-    void setTipo(const std::string& nuevoTipo);
-};
+// Tema 7: dado un vector<Robot> con al menos 2 elementos,
+// selecciona dos robots distintos al azar y devuelve el indice del ganador
+// (indice dentro del vector original 'robots').
+// Usa <random> (mt19937), no rand().
+int simularBatalla(const std::vector<Robot>& robots);
