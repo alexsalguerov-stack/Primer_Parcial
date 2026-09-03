@@ -12,11 +12,11 @@ private:
     string rol; // Ej: "Analista", "Programador", "Tester"
 
 public:
-    Integrante(const std::string& nombre, const std::string& rol);
+    Integrante(const string& nombre, const string& rol);
 
     string getNombre() const;
     string getRol() const;
 
-    void setNombre(const std::string& nuevoNombre);
-    void setRol(const std::string& nuevoRol);
+    void setNombre(const string& nuevoNombre);
+    void setRol(const string& nuevoRol);
 };
