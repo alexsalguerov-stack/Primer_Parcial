@@ -32,10 +32,4 @@ int simularBatalla(const vector<Robot>& robots) {
         idx2 = distIndice(gen);
     }
 
-    // Elegir ganador entre los dos (50/50 por ahora; cada equipo puede
-    // ponderar esto mas adelante segun atributos del robot)
-    uniform_int_distribution<int> monedaDist(0, 1);
-    int moneda = monedaDist(gen);
-
-    return (moneda == 0) ? static_cast<int>(idx1) : static_cast<int>(idx2);
 }
