@@ -35,3 +35,7 @@ public:
 
 
 (VENTAJAS DEL CAMBIO STRING A ENUM: 
+
+
+-El tamaño de robot string era de 64 bytes y el de enum es de 32 bytes pues actua en c++ como entero. 
+-La ejecución es mas rapida.
