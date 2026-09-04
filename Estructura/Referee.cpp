@@ -15,13 +15,6 @@ int simularBatalla(const vector<Robot>& robots) {
 
     uniform_int_distribution<size_t> distIndice(0, robots.size() - 1);
 
-    // Elegir dos indices distintos
-    size_t idx1 = distIndice(gen);
-    size_t idx2 = distIndice(gen);
-    while (idx2 == idx1) {
-        idx2 = distIndice(gen);
-    }
-
     // Elegir ganador entre los dos (50/50 por ahora; cada equipo puede
     // ponderar esto mas adelante segun atributos del robot)
     uniform_int_distribution<int> monedaDist(0, 1);
