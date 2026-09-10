@@ -25,7 +25,7 @@ void Tabla_Equipos(const vector<string>& nombres) {
       for (const string& n : nombres) {
           cout << "| " << left << setw(ancho) << n << " |" << endl;
       }
-      
+
       cout << "+ " << string(ancho, '-') << " +" << endl;
   }
 
@@ -61,41 +61,45 @@ void Tabla_Equipos(const vector<string>& nombres) {
   }
 
 int main() {
-    Organizador org;
-    Referee ref;
+    Organizador org; // Instancia del organizador
+    Referee ref;     // Instancia del referee
 
     cout << "=== Competencia de Robotica Universitaria ===\n" << endl;
 
     cout << "Las inscripciones estan abiertas. Todos los equipos deben registrarse en breve." << endl;
-    org.iniciar_registro();
+    org.ejecutarRegistro(); // Inicia el proceso de registro de equipos y robots por parte del organizador
 
     cout << "Se cierran las inscripciones, a continuacion se mostraran los equipos registrados:" << endl;
+
     cout << "\n--- Equipos Registrados ---" << endl;
-    vector<string> equipos = org.Datos_Equipos();
-    Tabla_Equipos(equipos);
+    vector<string> equipos = org.getNombresEquipos(); // Obtiene los nombres de los equipos registrados del organizador
+    Tabla_Equipos(equipos);                       // Imprime la tabla de equipos registrados
 
     cout << "A continuacion se mostraran los enfrentamientos de cada disciplina" << endl;
-    
+
+    string disciplina;
+    vector<pair<string, string>> pares;
+
     cout << "\n--- Enfrentamientos de Sumo ---" << endl;
-    string disciplina = "Sumo";
-      vector<pair<string, string>> pares = org.getEmparejamientos(disciplina);
-      Tabla_Enfrentamientos(pares, disciplina);
+    disciplina = "Sumo";                                                 // Define la disciplina
+    pares = org.getEmparejamientos(disciplina);                          // Obtiene los pares de enfrentamientos para la disciplina "Sumo"
+    Tabla_Enfrentamientos(pares, disciplina);                            // Imprime la tabla de enfrentamientos para la disciplina "Sumo"
 
     cout << "\n--- Enfrentamientos de Seguidor de linea ---" << endl;
-    string disciplina = "Seguidor de linea";
-      vector<pair<string, string>> pares = org.getEmparejamientos(disciplina);
-      Tabla_Enfrentamientos(pares, disciplina);
+    disciplina = "Seguidor de linea";
+    pares = org.getEmparejamientos(disciplina);
+    Tabla_Enfrentamientos(pares, disciplina);
 
     cout << "\n--- Enfrentamientos de Combate ---" << endl;
-    string disciplina = "Combate";
-      vector<pair<string, string>> pares = org.getEmparejamientos(disciplina);
-      Tabla_Enfrentamientos(pares, disciplina);
+    disciplina = "Combate";
+    pares = org.getEmparejamientos(disciplina);
+    Tabla_Enfrentamientos(pares, disciplina);
 
     cout << "Todas las batallas han concluido. A continuacion se muestran los ganadores de cada disciplina:" << endl;
 
     cout << "\n--- Resultados de las batallas ---" << endl;
-    vector<string> ganadores = ref.simular_batallas(org.getRobots());
-    Tabla_Ganadores(ganadores);
+    vector<string> ganadores = org.obtenerGanadores(ref);       // El organizador coordina la simulación con el referee y devuelve los ganadores
+    Tabla_Ganadores(ganadores);                                 // Imprime la tabla de ganadores de las batallas
 
     cout << "\n=== Fin de la Competencia Agradecemos su Participación ===" << endl;
   }
