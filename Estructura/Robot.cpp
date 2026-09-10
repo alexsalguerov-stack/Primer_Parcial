@@ -1,26 +1,28 @@
-#include "Integrante.h"
+#include "Robot.h"
 
 using namespace std;
 
-Integrante::Integrante(const string& nombre, const string& rol)
-    : nombre(nombre), rol(rol) {}
+// Lista de inicializacion: se inicializan los atributos directamente,
+// en lugar de asignarlos en el cuerpo del constructor.
+Robot::Robot(const string& nombre, const string& tipo)
+    : nombre(nombre), tipo(tipo) {}
 
-string Integrante::getNombre() const {
+string Robot::getNombre() const {
     return nombre;
 }
 
-string Integrante::getRol() const {
-    return rol;
+string Robot::getTipo() const {
+    return tipo;
 }
 
-void Integrante::setNombre(const string& nuevoNombre) {
+void Robot::setNombre(const string& nuevoNombre) {
     if (!nuevoNombre.empty()) {
         nombre = nuevoNombre;
     }
 }
 
-void Integrante::setRol(const string& nuevoRol) {
-    if (!nuevoRol.empty()) {
-        rol = nuevoRol;
+void Robot::setTipo(const string& nuevoTipo) {
+    if (!nuevoTipo.empty()) {
+        tipo = nuevoTipo;
     }
 }
