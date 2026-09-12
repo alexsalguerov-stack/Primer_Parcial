@@ -3,7 +3,5 @@
 #include <string>
 #include "Robot.h"
 
-using namespace std;
-
 // Tema 5: filtra un vector<Robot> por tipo (agrupar por disciplina)
-vector<Robot> filtrarPorTipo(const vector<Robot>& robots, const string& tipo);
+std::vector<Robot> filtrarPorTipo(const std::vector<Robot>& robots, const std::string& tipo);
