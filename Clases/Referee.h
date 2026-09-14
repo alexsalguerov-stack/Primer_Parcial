@@ -5,9 +5,11 @@
 
 using namespace std;
 
-// Tema 7: dado un vector<Robot> con al menos 2 elementos,
-// selecciona dos robots distintos al azar y devuelve el indice del ganador
-// (indice dentro del vector original 'robots').
-// Usa <random> (mt19937), no rand().
-int simularBatalla(const vector<Robot>& robots);
+// Clase Referee: Responsable de resolver los enfrentamientos de forma aleatoria.
+class Referee {
+public:
+    Referee();
 
+    // Selecciona dos robots al azar y devuelve el índice del ganador
+    int simularBatalla(const vector<Robot>& robots);
+};
