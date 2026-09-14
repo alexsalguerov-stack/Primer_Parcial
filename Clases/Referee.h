@@ -9,5 +9,5 @@ public:
     Referee();
 
     // Selecciona dos robots al azar y devuelve el índice del ganador
-    int simularBatalla(const vector<Robot>& robots);
+    int simularBatalla(const std::vector<Robot>& robots);
 };
