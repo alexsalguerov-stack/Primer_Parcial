@@ -2,6 +2,7 @@
 #include "Referee.h"
 #include <iostream>
 #include <algorithm>
+#include <limits>
 
 using namespace std;
 
@@ -12,13 +13,13 @@ Organizador::Organizador() {}
 void Organizador::ejecutarRegistro() {
     int numEquipos;
     cout << "Ingrese la cantidad de equipos a registrar: ";
-    cin >> numEquipos;
+    if (!(cin >> numEquipos)) return;
 
     for (int i = 0; i < numEquipos; ++i) {
         string nombreEq;
         cout << "\n--- Registro Equipo " << (i + 1) << " ---\n";
         cout << "Nombre del Equipo: ";
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, nombreEq);
 
         Equipo equipo(nombreEq);
@@ -30,7 +31,7 @@ void Organizador::ejecutarRegistro() {
         for (int j = 0; j < numInt; ++j) {
             string nomInt, rolInt;
             cout << "  Nombre integrante " << (j + 1) << ": ";
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, nomInt);
             cout << "  Rol (Analista/Programador/Tester): ";
             getline(cin, rolInt);
@@ -44,7 +45,7 @@ void Organizador::ejecutarRegistro() {
         for (int k = 0; k < numRob; ++k) {
             string nomRob, tipoRob;
             cout << "  Nombre robot " << (k + 1) << ": ";
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, nomRob);
             cout << "  Tipo (Sumo/Seguidor de linea/Combate): ";
             getline(cin, tipoRob);
@@ -77,7 +78,6 @@ vector<Robot> Organizador::filtrarPorTipo(const vector<Robot>& robots, const str
 
 // Genera los emparejamientos para una disciplina específica
 vector<pair<string, string>> Organizador::getEmparejamientos(const string& disciplina) const {
-    // Primero reunimos todos los robots de esa disciplina de todos los equipos
     vector<Robot> todosLosRobots;
     for (const auto& eq : equipos) {
         for (const auto& r : eq.getRobots()) {
@@ -88,7 +88,6 @@ vector<pair<string, string>> Organizador::getEmparejamientos(const string& disci
     }
 
     vector<pair<string, string>> pares;
-    // Emparejamos de dos en dos
     for (size_t i = 0; i + 1 < todosLosRobots.size(); i += 2) {
         pares.push_back({todosLosRobots[i].getNombre(), todosLosRobots[i + 1].getNombre()});
     }
@@ -96,7 +95,7 @@ vector<pair<string, string>> Organizador::getEmparejamientos(const string& disci
     return pares;
 }
 
-// Coordina la simulación de batallas hasta encontrar un ganador por disciplina
+// Coordina la simulación de batallas mediante un torneo de eliminación directa
 vector<string> Organizador::obtenerGanadores(Referee& ref) {
     vector<string> ganadoresFinales;
     vector<string> disciplinas = {"Sumo", "Seguidor de linea", "Combate"};
@@ -113,16 +112,21 @@ vector<string> Organizador::obtenerGanadores(Referee& ref) {
 
         if (concursantes.empty()) continue;
 
-        // Simular eliminatorias hasta que quede solo uno
+        // Simular eliminatorias ronda por ronda
         while (concursantes.size() > 1) {
-            int winnerIdx = ref.simularBatalla(concursantes);
-
-            // Guardamos el ganador y limpiamos el vector para la siguiente ronda
-            // Para simplificar: el ganador pasa a la siguiente ronda, los demás se eliminan
-            // En una competencia real sería un torneo, aquí hacemos una eliminación rápida
-            Robot winner = concursantes[winnerIdx];
-            concursantes.clear();
-            concursantes.push_back(winner);
+            vector<Robot> siguientesRonda;
+            for (size_t i = 0; i < concursantes.size(); i += 2) {
+                if (i + 1 < concursantes.size()) {
+                    // Batalla entre dos robots
+                    vector<Robot> pareja = {concursantes[i], concursantes[i+1]};
+                    int winnerIdx = ref.simularBatalla(pareja);
+                    siguientesRonda.push_back(pareja[winnerIdx]);
+                } else {
+                    // Robot que pasa directo si el número de concursantes es impar
+                    siguientesRonda.push_back(concursantes[i]);
+                }
+            }
+            concursantes = siguientesRonda;
         }
 
         ganadoresFinales.push_back(concursantes[0].getNombre() + " (" + disc + ")");

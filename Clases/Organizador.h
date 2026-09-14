@@ -7,10 +7,10 @@
 // Clase Organizador: Gestiona el registro de equipos y la coordinación de la competencia.
 class Organizador {
 private:
-    vector<Equipo> equipos;
+    std::vector<Equipo> equipos;
 
     // Método auxiliar interno para agrupar robots por disciplina
-    vector<Robot> filtrarPorTipo(const vector<Robot>& robots, const string& tipo) const;
+    std::vector<Robot> filtrarPorTipo(const std::vector<Robot>& robots, const std::string& tipo) const;
 
 public:
     Organizador();
@@ -19,9 +19,9 @@ public:
     void ejecutarRegistro();
 
     // Getters para la capa de presentación
-    vector<string> getNombresEquipos() const;
-    vector<pair<string, string>> getEmparejamientos(const string& disciplina) const;
+    std::vector<std::string> getNombresEquipos() const;
+    std::vector<std::pair<std::string, std::string>> getEmparejamientos(const std::string& disciplina) const;
 
     // Coordina la simulación de batallas usando un Referee
-    vector<string> obtenerGanadores(class Referee& ref);
+    std::vector<std::string> obtenerGanadores(class Referee& ref);
 };

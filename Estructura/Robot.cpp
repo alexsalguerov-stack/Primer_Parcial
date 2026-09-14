@@ -1,5 +1,4 @@
 #include "Robot.h"
-#include "Robot.h"
 
 using namespace std;
 
@@ -13,8 +12,6 @@ string Robot::getNombre() const {
 
 string Robot::getTipo() const {
     return tipo;
-string Robot::getTipo() const {
-    return tipo;
 }
 
 void Robot::setNombre(const string& nuevoNombre) {
@@ -23,9 +20,6 @@ void Robot::setNombre(const string& nuevoNombre) {
     }
 }
 
-void Robot::setTipo(const string& nuevoTipo) {
-    if (!nuevoTipo.empty()) {
-        tipo = nuevoTipo;
 void Robot::setTipo(const string& nuevoTipo) {
     if (!nuevoTipo.empty()) {
         tipo = nuevoTipo;

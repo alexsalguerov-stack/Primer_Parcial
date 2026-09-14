@@ -1,5 +1,4 @@
 #include "Referee.h"
-#include "Referee.h"
 #include <random>
 #include <stdexcept>
 
