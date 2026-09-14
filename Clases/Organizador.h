@@ -4,8 +4,6 @@
 #include "Equipo.h"
 #include "Robot.h"
 
-using namespace std;
-
 // Clase Organizador: Gestiona el registro de equipos y la coordinación de la competencia.
 class Organizador {
 private:

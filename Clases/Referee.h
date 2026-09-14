@@ -3,8 +3,6 @@
 #include <string>
 #include "Robot.h"
 
-using namespace std;
-
 // Clase Referee: Responsable de resolver los enfrentamientos de forma aleatoria.
 class Referee {
 public:

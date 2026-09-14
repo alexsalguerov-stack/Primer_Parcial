@@ -1,0 +1,31 @@
+INICIO
+
+:Mostrar bienvenida;
+:Preguntar "¿Cuántos equipos?";
+:Leer n;
+
+REPETIR
+  :Registrar equipo i;
+  :Leer nombre del equipo;
+  :Leer número de participantes;
+  
+  REPETIR
+    :Leer nombre y carrera del integrante;
+    :Agregar integrante al equipo;
+  repetir while (¿Más integrantes?) es Sí ------> No
+    
+  :Leer número de robots;
+  
+  REPETIR
+    :Leer nombre y tipo del robot;
+    :Agregar robot al equipo;
+    repetir while (¿Más robots?) es Si -----> No
+  
+  :Registrar equipo en competencia;
+repetir while (i < n?) es Sí -----> No
+
+:Mostrar resumen de registros;
+
+:INICIAR COMPETENCIA;
+
+
