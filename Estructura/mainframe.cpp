@@ -2,11 +2,11 @@
 #include <string>
 #include <vector>
 #include <iomanip>
-#include "Equipo.h"
-#include "Robot.h"
-#include "Organizador.h"
-#include "Referee.h"
-#include "Integrante.h"
+#include "../Clases/Equipo.h"
+#include "../Clases/Robot.h"
+#include "../Clases/Organizador.h"
+#include "../Clases/Referee.h"
+#include "../Clases/Integrante.h"
 
 using namespace std;
 
