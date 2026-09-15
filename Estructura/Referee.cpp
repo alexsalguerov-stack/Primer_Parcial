@@ -1,4 +1,4 @@
-#include "Referee.h"
+#include "../Clases/Referee.h"
 #include <random>
 #include <stdexcept>
 
