@@ -1,7 +1,7 @@
 # Log de Desarrollo: Sistema de Gestión de Competencia de Robótica
 
 ## 📅 Estado del Proyecto
-- **Fecha de última actualización:** 2026-09-10
+- **Fecha de última actualización:** 2026-09-15
 - **Objetivo:** Implementación del Primer Parcial de POO (Programación Orientada a Objetos).
 - **Restricción Principal:** Uso de POO sin herencia.
 
