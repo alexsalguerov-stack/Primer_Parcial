@@ -98,7 +98,7 @@ vector<pair<string, string>> Organizador::getEmparejamientos(const string& disci
 }
 
 // Coordina la simulación de batallas mediante un torneo de eliminación directa
-vector<string> Organizador::obtenerGanadores(Referee& ref) {
+vector<string> Organizador::obtenerGanadores(class Referee& ref) {
     vector<string> ganadoresFinales;
     vector<Categorias> disciplinas = {Categorias::SUMO, Categorias::SEGUIDOR_DE_LINEA, Categorias::COMBATE};
 
