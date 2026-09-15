@@ -1,4 +1,4 @@
-#include "Integrante.h"
+#include "../Clases/Integrante.h"
 
 using namespace std;
 
