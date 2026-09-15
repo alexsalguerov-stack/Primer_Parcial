@@ -2,8 +2,12 @@
 
 using namespace std;
 
-// Constructor con lista de inicializacion para eficiencia
+// Constructor con string (convierte a enum)
 Robot::Robot(const string& nombre, const string& tipo)
+    : nombre(nombre), tipo(stringToCategoria(tipo)) {}
+
+// Constructor con enum
+Robot::Robot(const string& nombre, Categorias tipo)
     : nombre(nombre), tipo(tipo) {}
 
 string Robot::getNombre() const {
@@ -11,6 +15,10 @@ string Robot::getNombre() const {
 }
 
 string Robot::getTipo() const {
+    return categoriaToString(tipo);
+}
+
+Categorias Robot::getTipoEnum() const {
     return tipo;
 }
 
@@ -22,6 +30,10 @@ void Robot::setNombre(const string& nuevoNombre) {
 
 void Robot::setTipo(const string& nuevoTipo) {
     if (!nuevoTipo.empty()) {
-        tipo = nuevoTipo;
+        tipo = stringToCategoria(nuevoTipo);
     }
+}
+
+void Robot::setTipo(Categorias nuevoTipo) {
+    tipo = nuevoTipo;
 }
