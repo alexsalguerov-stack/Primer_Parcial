@@ -1,5 +1,5 @@
-#include "Organizador.h"
-#include "Referee.h"
+#include "../Clasess/Organizador.h"
+#include "../Clases/Referee.h"
 #include <iostream>
 #include <algorithm>
 #include <limits>
