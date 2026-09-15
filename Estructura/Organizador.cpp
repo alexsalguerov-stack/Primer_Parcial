@@ -1,4 +1,4 @@
-#include "../Clasess/Organizador.h"
+#include "../Clases/Organizador.h"
 #include "../Clases/Referee.h"
 #include <iostream>
 #include <algorithm>
