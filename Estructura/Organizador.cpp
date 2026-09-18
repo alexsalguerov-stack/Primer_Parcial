@@ -1,5 +1,5 @@
-#include "Organizador.h"
-#include "Referee.h"
+#include "../Clases/Organizador.h"
+#include "../Clases/Referee.h"
 #include <iostream>
 #include <algorithm>
 #include <limits>
@@ -68,8 +68,9 @@ vector<string> Organizador::getNombresEquipos() const {
 // Filtra robots por disciplina (Método Auxiliar)
 vector<Robot> Organizador::filtrarPorTipo(const vector<Robot>& robots, const string& tipo) const {
     vector<Robot> resultado;
+    Categorias categoria = stringToCategoria(tipo);
     for (const auto& r : robots) {
-        if (r.getTipo() == tipo) {
+        if (r.getTipoEnum() == categoria) {
             resultado.push_back(r);
         }
     }
@@ -79,9 +80,10 @@ vector<Robot> Organizador::filtrarPorTipo(const vector<Robot>& robots, const str
 // Genera los emparejamientos para una disciplina específica
 vector<pair<string, string>> Organizador::getEmparejamientos(const string& disciplina) const {
     vector<Robot> todosLosRobots;
+    Categorias categoria = stringToCategoria(disciplina);
     for (const auto& eq : equipos) {
         for (const auto& r : eq.getRobots()) {
-            if (r.getTipo() == disciplina) {
+            if (r.getTipoEnum() == categoria) {
                 todosLosRobots.push_back(r);
             }
         }
@@ -96,15 +98,15 @@ vector<pair<string, string>> Organizador::getEmparejamientos(const string& disci
 }
 
 // Coordina la simulación de batallas mediante un torneo de eliminación directa
-vector<string> Organizador::obtenerGanadores(Referee& ref) {
+vector<string> Organizador::obtenerGanadores(class Referee& ref) {
     vector<string> ganadoresFinales;
-    vector<string> disciplinas = {"Sumo", "Seguidor de linea", "Combate"};
+    vector<Categorias> disciplinas = {Categorias::SUMO, Categorias::SEGUIDOR_DE_LINEA, Categorias::COMBATE};
 
-    for (const string& disc : disciplinas) {
+    for (const Categorias& disc : disciplinas) {
         vector<Robot> concursantes;
         for (const auto& eq : equipos) {
             for (const auto& r : eq.getRobots()) {
-                if (r.getTipo() == disc) {
+                if (r.getTipoEnum() == disc) {
                     concursantes.push_back(r);
                 }
             }
@@ -129,7 +131,7 @@ vector<string> Organizador::obtenerGanadores(Referee& ref) {
             concursantes = siguientesRonda;
         }
 
-        ganadoresFinales.push_back(concursantes[0].getNombre() + " (" + disc + ")");
+        ganadoresFinales.push_back(concursantes[0].getNombre() + " (" + categoriaToString(disc) + ")");
     }
 
     return ganadoresFinales;

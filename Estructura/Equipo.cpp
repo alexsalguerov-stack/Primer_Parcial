@@ -1,4 +1,4 @@
-#include "Equipo.h"
+#include "../Clases/Equipo.h"
 #include <iostream>
 
 using namespace std;

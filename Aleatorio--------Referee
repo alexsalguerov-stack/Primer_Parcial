@@ -1,0 +1,37 @@
+//#pragma once
+#include <vector>
+#include <string>
+#include "Robot.h"
+
+// Clase Referee: Responsable de resolver los enfrentamientos de forma aleatoria.
+class Referee {
+public:
+    Referee(); //
+
+    /* Selecciona dos robots al azar y devuelve el índice del ganador
+    int simularBatalla(const std::vector<Robot>& robots);*/
+};
+
+¿Que habia antes?
+El Organizador no solo organizaba el torneo, también decidía ganadores. 
+Una función suelta no puede recordar nada entre llamadas, ni aplicar reglas por disciplina, ni llevar historial.
+
+¿Qué se hizo?
+Se creó una clase Referee con una responsabilidad clara:
+
+
+class Referee {
+public:
+    Referee();
+    int simularBatalla(const std::vector<Robot>& robots);
+};
+
+Es mucho mas fácil de testear.
+Se puede probar Referee por separado sin estropear o modificar el torneo:
+
+
+Referee ref;
+vector<Robot> robots = { /* ... */ };
+int idx = ref.simularBatalla(robots);
+assert(idx >= 0 && idx < robots.size());
+
