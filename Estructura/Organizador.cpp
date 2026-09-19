@@ -14,12 +14,12 @@ void Organizador::ejecutarRegistro() {
     int numEquipos;
     cout << "Ingrese la cantidad de equipos a registrar: ";
     if (!(cin >> numEquipos)) return;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar búfer inmediatamente después de cin >>
 
     for (int i = 0; i < numEquipos; ++i) {
         string nombreEq;
         cout << "\n--- Registro Equipo " << (i + 1) << " ---\n";
         cout << "Nombre del Equipo: ";
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, nombreEq);
 
         Equipo equipo(nombreEq);
@@ -28,10 +28,11 @@ void Organizador::ejecutarRegistro() {
         int numInt;
         cout << "Cantidad de integrantes: ";
         cin >> numInt;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar búfer aquí
+
         for (int j = 0; j < numInt; ++j) {
             string nomInt, rolInt;
             cout << "  Nombre integrante " << (j + 1) << ": ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, nomInt);
             cout << "  Rol (Analista/Programador/Tester): ";
             getline(cin, rolInt);
@@ -42,10 +43,11 @@ void Organizador::ejecutarRegistro() {
         int numRob;
         cout << "Cantidad de robots: ";
         cin >> numRob;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar búfer aquí
+        
         for (int k = 0; k < numRob; ++k) {
             string nomRob, tipoRob;
             cout << "  Nombre robot " << (k + 1) << ": ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, nomRob);
             cout << "  Tipo (Sumo/Seguidor de linea/Combate): ";
             getline(cin, tipoRob);
